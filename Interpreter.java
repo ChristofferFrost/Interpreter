@@ -20,7 +20,17 @@ public class Interpreter {
             System.out.println(input.substring(1, input.length() - 1));
             System.exit(0);
         }
+        
+        // Check if input is a known variable (e.g., x, v, i)
+        else if (variables.containsKey(input)) {
 
+            // Print the value of the variable and exit
+
+            System.out.println(variables.get(input));
+
+            System.exit(0);
+
+        }
         // Check if the input is a valid function call
         else if (input.startsWith("(") && input.endsWith(")")) {
             // Clean up the input by adding spaces around parentheses and splitting
