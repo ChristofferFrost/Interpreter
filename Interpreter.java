@@ -21,26 +21,32 @@ public class Interpreter {
         
         // Check if input is a known variable (e.g., x, v, i)
         else if (variables.containsKey(input)) {
-
             // Print the value of the variable and exit
-
             System.out.println(variables.get(input));
-
             System.exit(0);
 
-        }
+        // Check if the input is a valid function name without arguments
+        } else if (input.equals("add")) {
+            System.out.println("The 'add' function takes two arguments and returns their sum.");
+            System.exit(0);
+        } else if (input.equals("sub")) {
+            System.out.println("The 'sub' function takes two arguments and returns their difference.");
+            System.exit(0);
+
         // Check if the input is a valid function call
-        else if (input.startsWith("(") && input.endsWith(")")) {
+        } else if (input.startsWith("(") && input.endsWith(")")) {
             // Clean up the input by adding spaces around parentheses and splitting
             String[] parts = input.replace("(", "( ").replace(")", " ) ").split("\\s+");
 
             // Call function handler to evaluate the expression
             int result = evaluateExpression(parts, new int[]{0}); 
-
             System.out.println(result);
+
         } else if (isValidInteger(input)) {
+            // If input is a valid integer, print it
             System.out.println(input);
             System.exit(0);
+
         } else {
             System.err.println("Error: Invalid expression");
             System.exit(1);
