@@ -5,11 +5,9 @@ import java.util.Scanner;
 
 public class Interpreter {
 
-    // The environment stores variable bindings and functions
     private static Map<String, Integer> variables = new HashMap<>();
 
     public static void main(String[] args) {
-        // Initialize the environment with predefined variables and functions
         initializeVariables();
 
         Scanner scanner = new Scanner(System.in);
@@ -41,7 +39,6 @@ public class Interpreter {
 
             System.out.println(result);
         } else if (isValidInteger(input)) {
-            // If input is a valid integer, print it
             System.out.println(input);
             System.exit(0);
         } else {
@@ -70,18 +67,16 @@ public class Interpreter {
     // Recursive function to evaluate expressions like (add 5 x)
     private static int evaluateExpression(String[] tokens, int[] index) {
         if (tokens[index[0]].equals("(")) {
-            index[0]++; // Skip the opening parenthesis
-            String operation = tokens[index[0]]; // Get the operation (add, sub)
-            index[0]++; // Move to the first argument
+            index[0]++; 
+            String operation = tokens[index[0]]; 
+            index[0]++; 
 
             // Evaluate the left and right arguments recursively
             int left = evaluateExpression(tokens, index);
             int right = evaluateExpression(tokens, index);
 
-            // Skip the closing parenthesis
             index[0]++;
 
-            // Perform the operation
             switch (operation) {
                 case "add":
                     return left + right;
